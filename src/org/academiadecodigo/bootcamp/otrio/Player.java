@@ -7,11 +7,18 @@ import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 import java.util.HashMap;
 import java.util.Iterator;
 
 public class Player implements KeyboardHandler{
+
+    private int name;
+    private int score;
+    private boolean myTurn = false;
+
+    private Color color;
 
     private HashMap<Double, String> hasMap = new HashMap();
 
@@ -28,12 +35,19 @@ public class Player implements KeyboardHandler{
     private int mediumCircleCount = 0;
     private int bigCircleCount = 0;
 
-    public Player() {
+    public Player(int name, int score, Color color) {
+
+        this.name = name;
+        this.score = score;
+        this.color = color;
+
+        // -------------
         keyboard = new Keyboard(this);
         rectangle = new Rectangle(x, y, CELL_SIZE, CELL_SIZE);
-        rectangle.setColor(Color.RED);
+        rectangle.setColor(color);
         rectangle.draw();
         init();
+
     }
 
     public void init() {
@@ -121,7 +135,7 @@ public class Player implements KeyboardHandler{
                 }
 
                 Ellipse smallCircle = new Ellipse(rectangle.getX() + 37.5, rectangle.getY() + 37.5, CELL_SIZE - 75, CELL_SIZE - 75);
-                smallCircle.setColor(Color.BLUE);
+                smallCircle.setColor(color);
                 smallCircle.draw();
                 smallCircleCount++;
                 System.out.println("Small circles 3 | " + smallCircleCount);
@@ -142,7 +156,7 @@ public class Player implements KeyboardHandler{
                 }
 
                 Ellipse mediumCircle = new Ellipse(rectangle.getX() + 25, rectangle.getY() + 25, CELL_SIZE - 50, CELL_SIZE - 50);
-                mediumCircle.setColor(Color.BLUE);
+                mediumCircle.setColor(color);
                 mediumCircle.draw();
                 mediumCircleCount++;
                 System.out.println("Medium circles 3 | " + mediumCircleCount);
@@ -163,7 +177,7 @@ public class Player implements KeyboardHandler{
                 }
 
                 Ellipse bigCircle = new Ellipse(rectangle.getX() + 12.5, rectangle.getY() + 12.5, CELL_SIZE - 25, CELL_SIZE - 25);
-                bigCircle.setColor(Color.BLUE);
+                bigCircle.setColor(color);
                 bigCircle.draw();
                 bigCircleCount++;
                 System.out.println("Big circles 3 | " + bigCircleCount);
@@ -181,4 +195,25 @@ public class Player implements KeyboardHandler{
 
     }
 
+    public int getName() {
+        return name;
+    }
+
+
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public void setTurn(boolean turn) {
+        this.myTurn = turn;
+    }
+
+    public boolean isMyTurn() {
+        return myTurn;
+    }
 }
