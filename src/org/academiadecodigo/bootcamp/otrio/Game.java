@@ -38,12 +38,16 @@ public class Game {
 
         if(getTurn() == 0) {
             players[0].setCanMove(true);
+            players[0].getPointer().draw();
         } else if (getTurn() == 1){
             players[1].setCanMove(true);
+            players[1].getPointer().draw();
         } else if (getTurn() == 2){
             players[2].setCanMove(true);
+            players[2].getPointer().draw();
         } else {
             players[3].setCanMove(true);
+            players[3].getPointer().draw();
         }
 
     }

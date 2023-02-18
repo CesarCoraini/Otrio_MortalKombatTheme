@@ -44,7 +44,7 @@ public class Player{
 
         pointer = new Rectangle(x - CELL_SIZE, y - CELL_SIZE, CELL_SIZE, CELL_SIZE);
         pointer.setColor(color);
-        pointer.draw();
+        //pointer.draw();
 
     }
 
