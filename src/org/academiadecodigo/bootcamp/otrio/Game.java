@@ -34,6 +34,26 @@ public class Game {
             return;
         }
 
+        if(players[0].hasWon()) {
+            System.out.println("player 0 won");
+            return;
+        }
+
+        if(players[1].hasWon()) {
+            System.out.println("player 1 won");
+            return;
+        }
+
+        if(players[2].hasWon()) {
+            System.out.println("player 2 won");
+            return;
+        }
+
+        if(players[3].hasWon()) {
+            System.out.println("player 3 won");
+            return;
+        }
+
         if(getTurn() == 0) {
             players[0].setCanMove(true);
             players[0].getPointer().draw();

@@ -162,6 +162,9 @@ public class EventHandler implements KeyboardHandler {
                 //set array in row and col position to true
                 checkSmallPosition[rowSmall][colSmall] = true;
 
+                //set true player choice
+                players[currentPlayerIndex].setCheckSmallCircles(true, rowSmall, colSmall);
+
                 //Don't remember what this do xD
                 if(counter < 8) {
                     counter++;
@@ -209,6 +212,9 @@ public class EventHandler implements KeyboardHandler {
                 //set array in row and col position to true
                 checkMediumPosition[rowMedium][colMedium] = true;
 
+                //set true player choice
+                players[currentPlayerIndex].setCheckMediumCircle(true, rowMedium, colMedium);
+
                 //set's propriety's for the next turn
                 players[currentPlayerIndex].setCanMove(false);
                 players[currentPlayerIndex].getPointer().delete();
@@ -250,6 +256,9 @@ public class EventHandler implements KeyboardHandler {
 
                 //set array in row and col position to true
                 checkBigPosition[rowBig][colBig] = true;
+
+                //set true player choice
+                players[currentPlayerIndex].setCheckBigCircle(true, rowBig, colBig);
 
                 //set's propriety's for the next turn
                 players[currentPlayerIndex].setCanMove(false);
