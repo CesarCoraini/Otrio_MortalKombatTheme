@@ -13,6 +13,7 @@ public class Game {
     private static EventHandler handler;
 
     private static int turn = 0;
+    private static int counter = 3 * 3 * 3;
 
 
     public Game(int num) {
@@ -20,21 +21,18 @@ public class Game {
         this.gameFrame = new GameFrame();
         this.gameField = new GameField();
         generatePlayers(num);
+        displayPlayers(players);
         this.handler = new EventHandler(players);
         handler.init();
     }
 
-    public static void setTurn(int turn) {
-        Game.turn = turn;
-    }
-
-    public static int getTurn() {
-        return turn;
-    }
 
     public static void nextTurn() {
 
-        System.out.println(turn);
+        if(counter == 0) {
+            System.out.println("Don't have more options to play!");
+            return;
+        }
 
         if(getTurn() == 0) {
             players[0].setCanMove(true);
@@ -50,8 +48,8 @@ public class Game {
             players[3].getPointer().draw();
         }
 
+        counter--;
     }
-
 
     public void generatePlayers(int numPlayers) {
         players = new Player[numPlayers];
@@ -66,9 +64,9 @@ public class Game {
     public void displayPlayers(Player[] players) {
         int numPlayers = players.length;
         int rectWidth = 200 + (numPlayers - 2) * 100;
-        int rectHeight = 80 + (numPlayers - 2) * 40;
-        int rectX = 50;
-        int rectY = 50;
+        int rectHeight = (numPlayers - 2) * 40;
+        int rectX = 20;
+        int rectY = 20;
 
         // Create rectangle
         Rectangle rect = new Rectangle(rectX, rectY, rectWidth, rectHeight);
@@ -78,13 +76,21 @@ public class Game {
         // Add player names and scores
         for (int i = 0; i < numPlayers; i++) {
             int x = rectX + 20 + i * 100;
-            int y = rectY + 20 + i * 20;
+            int y = rectY + 15;
             Player player = players[i];
             Text nameText = new Text(x, y, "Player " + player.getName());
             nameText.draw();
             Text scoreText = new Text(x, y + 20, "Score: " + player.getScore());
             scoreText.draw();
         }
+    }
+
+    public static void setTurn(int turn) {
+        Game.turn = turn;
+    }
+
+    public static int getTurn() {
+        return turn;
     }
 
 

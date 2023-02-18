@@ -58,7 +58,7 @@ public class Player{
 
         //Check for a win in each column
         for(int i = 0; i < 3; i++) {
-            if (circles[0][i] == 0 && circles[1][i] == 0 && circles[2][i] == 0) {
+            if (circles[i][0] == 0 && circles[1][i] == 0 && circles[2][i] == 0) {
                 return  true;
             }
         }
@@ -128,4 +128,5 @@ public class Player{
     public void setBigCircleCount(int bigCircleCount) {
         this.bigCircleCount = bigCircleCount;
     }
+
 }

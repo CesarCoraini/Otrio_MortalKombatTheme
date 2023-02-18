@@ -238,7 +238,7 @@ public class EventHandler implements KeyboardHandler {
                 System.out.println("row:" + rowBig );
                 System.out.println("col:" + colBig);
 
-                if (checkMediumPosition[rowBig][colBig]){
+                if (checkBigPosition[rowBig][colBig]){
 
                     System.out.println("You can't draw BIG CIRCLES in the same place!");
                     break;
@@ -249,7 +249,7 @@ public class EventHandler implements KeyboardHandler {
                 bigCircle.draw();
 
                 //set array in row and col position to true
-                checkMediumPosition[rowBig][colBig] = true;
+                checkBigPosition[rowBig][colBig] = true;
 
                 //set's propriety's for the next turn
                 players[currentPlayerIndex].setCanMove(false);
