@@ -3,49 +3,60 @@ package org.academiadecodigo.bootcamp.otrio;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.graphics.Text;
-import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Game {
 
-    /*private static final int PADDING = 10;
-    private int turn = 0;
-    private GameFrame gameFrame;
     private GameField gameField;
-
-    private Player player;
-
-    public Game() {
-        gameFrame = new GameFrame();
-        gameField = new GameField();
-        player = new Player();
-    }*/
-
+    private GameFrame gameFrame;
     private static Player[] players;
-
-    private int turn = 0;
-    private static int currentPlayerIndex;
-    private GameFrame gameFrame;
-    private GameField gameField;
     private Color[] colors = new Color[]{Color.BLUE, Color.RED, Color.GREEN, Color.PINK};
+    private static EventHandler handler;
+
+    private static int turn = 0;
+
 
     public Game(int num) {
-        gameFrame = new GameFrame();
-        gameField = new GameField();
-        //displayPlayers(generatePlayers(num));
+
+        this.gameFrame = new GameFrame();
+        this.gameField = new GameField();
         generatePlayers(num);
+        this.handler = new EventHandler(players);
+        handler.init();
+    }
+
+    public static void setTurn(int turn) {
+        Game.turn = turn;
+    }
+
+    public static int getTurn() {
+        return turn;
+    }
+
+    public static void nextTurn() {
+
+        System.out.println(turn);
+
+        if(getTurn() == 0) {
+            players[0].setCanMove(true);
+        } else if (getTurn() == 1){
+            players[1].setCanMove(true);
+        } else if (getTurn() == 2){
+            players[2].setCanMove(true);
+        } else {
+            players[3].setCanMove(true);
+        }
 
     }
 
-    public  Player[] generatePlayers(int numPlayers) {
+
+    public void generatePlayers(int numPlayers) {
         players = new Player[numPlayers];
 
         for (int i = 0; i < numPlayers; i++) {
-            int name = i + 1;
-            Player player = new Player(name, 0, colors[i]);
+            Player player = new Player(i, 0, colors[i]);
             players[i] = player;
         }
 
-        return players;
     }
 
     public void displayPlayers(Player[] players) {
@@ -71,19 +82,6 @@ public class Game {
             scoreText.draw();
         }
     }
-
-    /*public void turn() {
-
-        while (true) {
-            if(turn % 2 == 0){
-                players[0].init();
-                turn++;
-            } else {
-                players[1].init();
-                turn++;
-            }
-        }*/
-
 
 
 }
