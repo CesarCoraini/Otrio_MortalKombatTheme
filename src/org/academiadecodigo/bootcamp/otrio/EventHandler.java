@@ -11,26 +11,49 @@ import java.util.Objects;
 
 public class EventHandler implements KeyboardHandler {
 
-
-    private HashMap<Integer, String> hasMap = new HashMap<>();
+    //Propriety's for the circles array's
     boolean[][] checkSmallPosition = new boolean[3][3];
+    boolean[][] checkMediumPosition = new boolean[3][3];
+    boolean[][] checkBigPosition = new boolean[3][3];
+
+    //Player's propriety's
     private Player[] players;
+    private int currentPlayerIndex;
     private static int counter = 0;
 
-    private int currentPlayerIndex;
-
+    //Positions
     private int x = GameField.getX();
     private int y = GameField.getY();
     private int CELL_SIZE = GameField.getCellSize();
+
+    //Constructor
     public EventHandler(Player[] players) {
         this.players = players;
+
+        //Array boolean for small circles
+        for(int i = 0; i < 3; i++) {
+            checkSmallPosition[0][i] = false;
+            checkSmallPosition[1][i] = false;
+            checkSmallPosition[2][i] = false;
+        }
+
+        //Array boolean for medium circles
+        for(int i = 0; i < 3; i++) {
+            checkMediumPosition[0][i] = false;
+            checkMediumPosition[1][i] = false;
+            checkMediumPosition[2][i] = false;
+        }
+
+        //Array boolean for big circles
+        for(int i = 0; i < 3; i++) {
+            checkBigPosition[0][i] = false;
+            checkBigPosition[1][i] = false;
+            checkBigPosition[2][i] = false;
+        }
 
     }
 
     public void init() {
-
-        //this.currentPlaterIndex = index;
-
 
         Keyboard keyboard = new Keyboard(this);
         KeyboardEvent up = new KeyboardEvent();
@@ -73,12 +96,15 @@ public class EventHandler implements KeyboardHandler {
 
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
+
+        Color playerColor = players[currentPlayerIndex].getColor();
+
+        //Check player Index
         System.out.println(currentPlayerIndex);
 
         if(!players[currentPlayerIndex].isCanMove()) {
             return;
         }
-
 
         switch (keyboardEvent.getKey()) {
             case KeyboardEvent.KEY_W:
@@ -111,38 +137,39 @@ public class EventHandler implements KeyboardHandler {
                 break;
             case KeyboardEvent.KEY_J:
 
-                double x = players[currentPlayerIndex].getPointer().getX() + 37.5;
-                double y = players[currentPlayerIndex].getPointer().getY() + 37.5;
+                double xSmall = players[currentPlayerIndex].getPointer().getX() + 37.5;
+                double ySmall = players[currentPlayerIndex].getPointer().getY() + 37.5;
 
-                double width = CELL_SIZE - 75;
-                double height = CELL_SIZE - 75;
+                int rowSmall = (players[currentPlayerIndex].getPointer().getY() - 150) / CELL_SIZE;
+                int colSmall = (players[currentPlayerIndex].getPointer().getX() - 250) / CELL_SIZE;
 
-                Color playerColor = players[currentPlayerIndex].getColor();
+                double widthSmall = CELL_SIZE - 75;
+                double heightSmall = CELL_SIZE - 75;
 
-                Integer key = counter;
-                String value = "small";
+                System.out.println("row:" + rowSmall );
+                System.out.println("col:" + colSmall);
 
-                System.out.println(players[currentPlayerIndex].getPointer().getX() - 150);
+                if (checkSmallPosition[rowSmall][colSmall]){
 
-                /*if (checkSmallPosition[][] == true){
-
-                    System.out.println("You can't draw in the same place!");
+                    System.out.println("You can't draw SMALL CIRCLES in the same place!");
                     break;
-                }*/
+                }
 
-                Ellipse smallCircle = new Ellipse(x, y, width, height);
+                Ellipse smallCircle = new Ellipse(xSmall, ySmall, widthSmall, heightSmall);
                 smallCircle.setColor(playerColor);
                 smallCircle.draw();
 
-                //checkSmallPosition[][] = true;
+                //set array in row and col position to true
+                checkSmallPosition[rowSmall][colSmall] = true;
 
-                hasMap.put(key, value);
-
+                //Don't remember what this do xD
                 if(counter < 8) {
                     counter++;
                 }
 
+                //set's propriety's for the next turn
                 players[currentPlayerIndex].setCanMove(false);
+
                 if (Game.getTurn() == 3){
                     currentPlayerIndex = 0;
                     Game.setTurn(0);
@@ -154,21 +181,75 @@ public class EventHandler implements KeyboardHandler {
 
                 break;
 
-            /*case KeyboardEvent.KEY_K:
+            case KeyboardEvent.KEY_K:
 
-                if (Objects.equals(hasMap.get(players[currentPlayerIndex].getPointer().getX() + 25.0 + players[currentPlayerIndex].getPointer().getY() + 25.0), "medium")) {
-                    System.out.println("You can't draw in the same place!");
+                double xMedium = players[currentPlayerIndex].getPointer().getX() + 25;
+                double yMedium = players[currentPlayerIndex].getPointer().getY() + 25;
+
+                int rowMedium = (players[currentPlayerIndex].getPointer().getY() - 150) / CELL_SIZE;
+                int colMedium = (players[currentPlayerIndex].getPointer().getX() - 250) / CELL_SIZE;
+
+                double widthMedium = CELL_SIZE - 50;
+                double heightMedium = CELL_SIZE - 50;
+
+                System.out.println("row:" + rowMedium );
+                System.out.println("col:" + colMedium);
+
+                if (checkMediumPosition[rowMedium][colMedium]){
+
+                    System.out.println("You can't draw MEDIUM CIRCLES in the same place!");
                     break;
                 }
 
-                Ellipse mediumCircle = new Ellipse(players[currentPlayerIndex].getPointer().getX() + 25, players[currentPlayerIndex].getPointer().getY() + 25, CELL_SIZE - 50, CELL_SIZE - 50);
+                Ellipse mediumCircle = new Ellipse(xMedium, yMedium, widthMedium, heightMedium);
                 mediumCircle.setColor(players[currentPlayerIndex].getColor());
                 mediumCircle.draw();
 
+                //set array in row and col position to true
+                checkMediumPosition[rowMedium][colMedium] = true;
 
+                //set's propriety's for the next turn
+                players[currentPlayerIndex].setCanMove(false);
 
-                hasMap.put((players[currentPlayerIndex].getPointer().getX() + 25.0 + players[currentPlayerIndex].getPointer().getY() + 25.0), "medium");
+                if (Game.getTurn() == 3){
+                    currentPlayerIndex = 0;
+                    Game.setTurn(0);
+                } else {
+                    Game.setTurn(currentPlayerIndex += 1);
+                    System.out.println(currentPlayerIndex);
+                }
+                Game.nextTurn();
 
+                break;
+
+            case KeyboardEvent.KEY_L:
+
+                double xBig = players[currentPlayerIndex].getPointer().getX() + 12.5;
+                double yBig = players[currentPlayerIndex].getPointer().getY() + 12.5;
+
+                int rowBig = (players[currentPlayerIndex].getPointer().getY() - 150) / CELL_SIZE;
+                int colBig = (players[currentPlayerIndex].getPointer().getX() - 250) / CELL_SIZE;
+
+                double widthBig = CELL_SIZE - 25;
+                double heightBig = CELL_SIZE - 25;
+
+                System.out.println("row:" + rowBig );
+                System.out.println("col:" + colBig);
+
+                if (checkMediumPosition[rowBig][colBig]){
+
+                    System.out.println("You can't draw BIG CIRCLES in the same place!");
+                    break;
+                }
+
+                Ellipse bigCircle = new Ellipse(xBig, yBig, widthBig, heightBig);
+                bigCircle.setColor(players[currentPlayerIndex].getColor());
+                bigCircle.draw();
+
+                //set array in row and col position to true
+                checkMediumPosition[rowBig][colBig] = true;
+
+                //set's propriety's for the next turn
                 players[currentPlayerIndex].setCanMove(false);
 
                 if (Game.getTurn() == 3){
@@ -180,30 +261,6 @@ public class EventHandler implements KeyboardHandler {
                 }
                 Game.nextTurn();
                 break;
-            case KeyboardEvent.KEY_L:
-
-                if (Objects.equals(hasMap.get(players[currentPlayerIndex].getPointer().getX() + 12.5 + players[currentPlayerIndex].getPointer().getY() + 12.5), "big")) {
-                    System.out.println("You can't draw in the same place!");
-                    break;
-                }
-
-                Ellipse bigCircle = new Ellipse(players[currentPlayerIndex].getPointer().getX() + 12.5, players[currentPlayerIndex].getPointer().getY() + 12.5, CELL_SIZE - 25, CELL_SIZE - 25);
-                bigCircle.setColor(players[currentPlayerIndex].getColor());
-                bigCircle.draw();
-
-                hasMap.put((players[currentPlayerIndex].getPointer().getX() + 12.5 + players[currentPlayerIndex].getPointer().getY() + 12.5), "big");
-
-                players[currentPlayerIndex].setCanMove(false);
-
-                if (Game.getTurn() == 3){
-                    currentPlayerIndex = 0;
-                    Game.setTurn(0);
-                } else {
-                    Game.setTurn(currentPlayerIndex += 1);
-                    System.out.println(currentPlayerIndex);
-                }
-                Game.nextTurn();
-                break;*/
 
         }
 
@@ -218,4 +275,6 @@ public class EventHandler implements KeyboardHandler {
     public boolean[][] getCheckSmallPosition() {
         return checkSmallPosition;
     }
+
+
 }
