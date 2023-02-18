@@ -15,6 +15,10 @@ public class Game {
     private static int turn = 0;
     private static int counter = 3 * 3 * 3;
 
+    private Rectangle scoreFrame;
+    private Text[] nameTexts = new Text[4];
+    private static Text[] scoreTexts = new Text[4];
+
 
     public Game(int num) {
 
@@ -28,6 +32,7 @@ public class Game {
 
 
     public static void nextTurn() {
+        int score = 0;
 
         if(counter == 0) {
             System.out.println("Don't have more options to play!");
@@ -36,21 +41,62 @@ public class Game {
 
         if(players[0].hasWon()) {
             System.out.println("player 0 won");
+
+            score = players[0].getScore() + 1;
+            players[0].setScore(score);
+            System.out.println(score);
+
+            int x = 20 + 20 + 0 * 100;
+            int y = 20 + 15;
+            scoreTexts[0].delete();
+            scoreTexts[0] = new Text(x, y + 20, "Score: " + players[0].getScore());
+            scoreTexts[0].draw();
+
             return;
         }
 
         if(players[1].hasWon()) {
             System.out.println("player 1 won");
+
+            score = players[1].getScore() + 1;
+            players[1].setScore(score);
+            System.out.println(score);
+
+            int x = 20 + 20 + 1 * 100;
+            int y = 20 + 15;
+            scoreTexts[1].delete();
+            scoreTexts[1] = new Text(x, y + 20, "Score: " + players[1].getScore());
+            scoreTexts[1].draw();
             return;
         }
 
         if(players[2].hasWon()) {
             System.out.println("player 2 won");
+
+            score = players[2].getScore() + 1;
+            players[2].setScore(score);
+            System.out.println(score);
+
+            int x = 20 + 20 + 2 * 100;
+            int y = 20 + 15;
+            scoreTexts[2].delete();
+            scoreTexts[2] = new Text(x, y + 20, "Score: " + players[2].getScore());
+            scoreTexts[2].draw();
             return;
         }
 
         if(players[3].hasWon()) {
             System.out.println("player 3 won");
+
+            score = players[3].getScore() + 1;
+            players[3].setScore(score);
+            System.out.println(score);
+
+            int x = 20 + 20 + 3 * 100;
+            int y = 20 + 15;
+            scoreTexts[3].delete();
+            scoreTexts[3] = new Text(x, y + 20, "Score: " + players[3].getScore());
+            scoreTexts[3].draw();
             return;
         }
 
@@ -89,9 +135,9 @@ public class Game {
         int rectY = 20;
 
         // Create rectangle
-        Rectangle rect = new Rectangle(rectX, rectY, rectWidth, rectHeight);
-        rect.setColor(Color.BLACK);
-        rect.draw();
+        scoreFrame = new Rectangle(rectX, rectY, rectWidth, rectHeight);
+        scoreFrame.setColor(Color.BLACK);
+        scoreFrame.draw();
 
         // Add player names and scores
         for (int i = 0; i < numPlayers; i++) {
@@ -99,8 +145,10 @@ public class Game {
             int y = rectY + 15;
             Player player = players[i];
             Text nameText = new Text(x, y, "Player " + player.getName());
+            nameTexts[i] = nameText;
             nameText.draw();
             Text scoreText = new Text(x, y + 20, "Score: " + player.getScore());
+            scoreTexts[i] = scoreText;
             scoreText.draw();
         }
     }
@@ -113,5 +161,12 @@ public class Game {
         return turn;
     }
 
+    public void setScoreTexts(Text scoreTexts, int i) {
+        this.scoreTexts[i] = scoreTexts;
+    }
+
+    public void newGame() {
+        this.gameField = new GameField();
+    }
 
 }

@@ -7,8 +7,11 @@ public class Main {
         Game game = new Game(4);
 
         //start the game loop
-
         Game.nextTurn();
+
+
+
+
 
 
 
