@@ -66,7 +66,8 @@ public class Player{
             if ((checkSmallCircles[0][i] && checkSmallCircles[1][i] && checkSmallCircles[2][i]) ||
                     (checkMediumCircleCount[0][i] && checkMediumCircleCount[1][i] && checkMediumCircleCount[2][i]) ||
                     (checkBigCircleCount[0][i] && checkBigCircleCount[1][i] && checkBigCircleCount[2][i]) ||
-                    (checkSmallCircles[0][i] && checkMediumCircleCount[1][i] && checkBigCircleCount[2][i])) {
+                    (checkSmallCircles[0][i] && checkMediumCircleCount[1][i] && checkBigCircleCount[2][i]) ||
+                    (checkBigCircleCount[0][i] && checkMediumCircleCount[1][i] && checkSmallCircles[2][i])) {
                 return  true;
             }
         }
@@ -76,7 +77,8 @@ public class Player{
             if ((checkSmallCircles[i][0] && checkSmallCircles[i][1] && checkSmallCircles[i][2]) ||
                     (checkMediumCircleCount[i][0] && checkMediumCircleCount[i][1] && checkMediumCircleCount[i][2]) ||
                     (checkBigCircleCount[i][0] && checkBigCircleCount[i][1] && checkBigCircleCount[i][2]) ||
-                    (checkSmallCircles[i][0] && checkMediumCircleCount[i][1] && checkBigCircleCount[i][2])) {
+                    (checkSmallCircles[i][0] && checkMediumCircleCount[i][1] && checkBigCircleCount[i][2]) ||
+                    (checkBigCircleCount[i][0] && checkMediumCircleCount[i][1] && checkSmallCircles[i][2])) {
                 return  true;
             }
         }
@@ -85,7 +87,8 @@ public class Player{
         if ((checkSmallCircles[0][0] && checkSmallCircles[1][1] && checkSmallCircles[2][2]) ||
                 (checkMediumCircleCount[0][0] && checkMediumCircleCount[1][1] && checkMediumCircleCount[2][2]) ||
                 (checkBigCircleCount[0][0] && checkBigCircleCount[1][1] && checkBigCircleCount[2][2]) ||
-                (checkSmallCircles[0][0] && checkMediumCircleCount[1][1] && checkBigCircleCount[2][2])) {
+                (checkSmallCircles[0][0] && checkMediumCircleCount[1][1] && checkBigCircleCount[2][2]) ||
+                (checkBigCircleCount[0][0] && checkMediumCircleCount[1][1] && checkSmallCircles[2][2])) {
             return true;
         }
 
@@ -93,7 +96,8 @@ public class Player{
         if ((checkSmallCircles[0][2] && checkSmallCircles[1][1] && checkSmallCircles[2][0]) ||
                 (checkMediumCircleCount[0][2] && checkMediumCircleCount[1][1] && checkMediumCircleCount[2][0]) ||
                 (checkBigCircleCount[0][2] && checkBigCircleCount[1][1] && checkBigCircleCount[2][0]) ||
-                (checkSmallCircles[0][2] && checkMediumCircleCount[1][1] && checkBigCircleCount[2][0])) {
+                (checkSmallCircles[0][2] && checkMediumCircleCount[1][1] && checkBigCircleCount[2][0]) ||
+                (checkBigCircleCount[0][2] && checkMediumCircleCount[1][1] && checkSmallCircles[2][0])) {
             return true;
         }
 

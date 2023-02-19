@@ -9,7 +9,7 @@ public class Game {
     private GameField gameField;
     private GameFrame gameFrame;
     private static Player[] players;
-    private Color[] colors = new Color[]{Color.BLUE, Color.RED, Color.GREEN, Color.PINK};
+    private Color[] colors = new Color[]{Color.ORANGE, Color.MAGENTA, Color.BLUE, Color.GRAY};
     private static EventHandler handler;
 
     private static int turn = 0;
@@ -50,6 +50,7 @@ public class Game {
             int y = 20 + 15;
             scoreTexts[0].delete();
             scoreTexts[0] = new Text(x, y + 20, "Score: " + players[0].getScore());
+            scoreTexts[0].setColor(Color.WHITE);
             scoreTexts[0].draw();
 
             return;
@@ -66,6 +67,7 @@ public class Game {
             int y = 20 + 15;
             scoreTexts[1].delete();
             scoreTexts[1] = new Text(x, y + 20, "Score: " + players[1].getScore());
+            scoreTexts[1].setColor(Color.WHITE);
             scoreTexts[1].draw();
             return;
         }
@@ -81,6 +83,7 @@ public class Game {
             int y = 20 + 15;
             scoreTexts[2].delete();
             scoreTexts[2] = new Text(x, y + 20, "Score: " + players[2].getScore());
+            scoreTexts[2].setColor(Color.WHITE);
             scoreTexts[2].draw();
             return;
         }
@@ -96,6 +99,7 @@ public class Game {
             int y = 20 + 15;
             scoreTexts[3].delete();
             scoreTexts[3] = new Text(x, y + 20, "Score: " + players[3].getScore());
+            scoreTexts[3].setColor(Color.WHITE);
             scoreTexts[3].draw();
             return;
         }
@@ -146,9 +150,11 @@ public class Game {
             Player player = players[i];
             Text nameText = new Text(x, y, "Player " + player.getName());
             nameTexts[i] = nameText;
+            nameText.setColor(Color.WHITE);
             nameText.draw();
             Text scoreText = new Text(x, y + 20, "Score: " + player.getScore());
             scoreTexts[i] = scoreText;
+            scoreText.setColor(Color.WHITE);
             scoreText.draw();
         }
     }
@@ -166,7 +172,7 @@ public class Game {
     }
 
     public void newGame() {
-        this.gameField = new GameField();
+
     }
 
 }
