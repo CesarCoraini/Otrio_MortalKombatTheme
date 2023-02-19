@@ -63,7 +63,7 @@ public class Game {
             scoreTexts[0] = new Text(x, y + 20, "Score: " + players[0].getScore());
             scoreTexts[0].setColor(Color.WHITE);
             scoreTexts[0].draw();
-
+            counter = 27;
             winnigPicture[0].draw();
             return;
         }
@@ -81,7 +81,7 @@ public class Game {
             scoreTexts[1] = new Text(x, y + 20, "Score: " + players[1].getScore());
             scoreTexts[1].setColor(Color.WHITE);
             scoreTexts[1].draw();
-
+            counter = 27;
             winnigPicture[1].draw();
             return;
         }
@@ -99,7 +99,7 @@ public class Game {
             scoreTexts[2] = new Text(x, y + 20, "Score: " + players[2].getScore());
             scoreTexts[2].setColor(Color.WHITE);
             scoreTexts[2].draw();
-
+            counter = 27;
             winnigPicture[2].draw();
             return;
         }
@@ -117,7 +117,7 @@ public class Game {
             scoreTexts[3] = new Text(x, y + 20, "Score: " + players[3].getScore());
             scoreTexts[3].setColor(Color.WHITE);
             scoreTexts[3].draw();
-
+            counter = 27;
             winnigPicture[3].draw();
             return;
         }
@@ -189,8 +189,7 @@ public class Game {
         this.scoreTexts[i] = scoreTexts;
     }
 
-    public void newGame() {
-
+    public static Picture[] getWinnigPicture() {
+        return winnigPicture;
     }
-
 }

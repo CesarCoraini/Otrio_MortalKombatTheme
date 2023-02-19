@@ -1,9 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="mortal-kombat:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/mortal_kombat_jar</output-path>
-    <root id="archive" name="mortal-kombat.jar">
-      <element id="module-output" name="mortal-kombat" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/lib/simplegraphics.jar" path-in-jar="/" />
-    </root>
-  </artifact>
-</component>

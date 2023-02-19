@@ -113,9 +113,25 @@ public class EventHandler implements KeyboardHandler {
         Color playerColor = players[currentPlayerIndex].getColor();
 
         //Check player Index
-        System.out.println(currentPlayerIndex);
+        System.out.println("player key pressed " + currentPlayerIndex);
+
+        if(players[0].hasWon() || players[1].hasWon() || players[2].hasWon() || players[3].hasWon()) {
+            switch (keyboardEvent.getKey()) {
+                case KeyboardEvent.KEY_SPACE:
+                    cleanBoard();
+                    System.out.println("enter space");
+                    for (int i = 0; i < Game.getWinnigPicture().length; i++) {
+                        Game.getWinnigPicture()[i].delete();
+                        System.out.println("delete image" + i);
+                    }
+                    Game.nextTurn();
+                    counter = 0;
+                    break;
+            }
+        }
 
         if(!players[currentPlayerIndex].isCanMove()) {
+            System.out.println("isCanMove activated");
             return;
         }
 
@@ -199,6 +215,8 @@ public class EventHandler implements KeyboardHandler {
                     Game.setTurn(currentPlayerIndex += 1);
                     System.out.println(currentPlayerIndex);
                 }
+
+
                 Game.nextTurn();
 
                 break;
@@ -302,9 +320,6 @@ public class EventHandler implements KeyboardHandler {
                 Game.nextTurn();
                 break;
 
-            case KeyboardEvent.KEY_SPACE:
-                cleanBoard();
-                break;
 
         }
 
@@ -324,6 +339,7 @@ public class EventHandler implements KeyboardHandler {
         for (Picture picture : picturesRepo) {
             if(picture != null) {
                 picture.delete();
+                picture = null;
             }
         }
 
@@ -339,8 +355,5 @@ public class EventHandler implements KeyboardHandler {
             players[i].resetBooleans();
         }
     }
-
-
-
 
 }
