@@ -6,15 +6,21 @@ import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
+
 import java.util.HashMap;
 import java.util.Objects;
 
 public class EventHandler implements KeyboardHandler {
 
     //Propriety's for the circles array's
-    boolean[][] checkSmallPosition = new boolean[3][3];
-    boolean[][] checkMediumPosition = new boolean[3][3];
-    boolean[][] checkBigPosition = new boolean[3][3];
+    private boolean[][] checkSmallPosition = new boolean[3][3];
+    private boolean[][] checkMediumPosition = new boolean[3][3];
+    private boolean[][] checkBigPosition = new boolean[3][3];
+
+    private String[] smallUrl = new String[] {"resources/1 - Small.png", "resources/2 - Small.png", "resources/3 - Small.png", "resources/4 - Small.png"};
+    private String[] mediumUrl = new String[] {"resources/1 - Medium.png", "resources/2 - Medium.png", "resources/3 - Medium.png", "resources/4 - Medium.png"};
+    private String[] bigUrl = new String[] {"resources/1 - Big.png", "resources/2 - Big.png", "resources/3 - Big.png", "resources/4 - Big.png"};
 
     //Player's propriety's
     private Player[] players;
@@ -157,7 +163,10 @@ public class EventHandler implements KeyboardHandler {
 
                 Ellipse smallCircle = new Ellipse(xSmall, ySmall, widthSmall, heightSmall);
                 smallCircle.setColor(playerColor);
-                smallCircle.draw();
+                //smallCircle.draw();
+
+                Picture smallRing = new Picture(xSmall - 37.5, ySmall - 37.5, smallUrl[currentPlayerIndex]);
+                smallRing.draw();
 
                 //set array in row and col position to true
                 checkSmallPosition[rowSmall][colSmall] = true;
@@ -207,7 +216,10 @@ public class EventHandler implements KeyboardHandler {
 
                 Ellipse mediumCircle = new Ellipse(xMedium, yMedium, widthMedium, heightMedium);
                 mediumCircle.setColor(players[currentPlayerIndex].getColor());
-                mediumCircle.draw();
+                //mediumCircle.draw();
+
+                Picture mediumRing = new Picture(xMedium - 25, yMedium - 25, mediumUrl[currentPlayerIndex]);
+                mediumRing.draw();
 
                 //set array in row and col position to true
                 checkMediumPosition[rowMedium][colMedium] = true;
@@ -252,7 +264,10 @@ public class EventHandler implements KeyboardHandler {
 
                 Ellipse bigCircle = new Ellipse(xBig, yBig, widthBig, heightBig);
                 bigCircle.setColor(players[currentPlayerIndex].getColor());
-                bigCircle.draw();
+                //bigCircle.draw();
+
+                Picture bigRing = new Picture(xBig - 12.5, yBig - 12.5, bigUrl[currentPlayerIndex]);
+                bigRing.draw();
 
                 //set array in row and col position to true
                 checkBigPosition[rowBig][colBig] = true;

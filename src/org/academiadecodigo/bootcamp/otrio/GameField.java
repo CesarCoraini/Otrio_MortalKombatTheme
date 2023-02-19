@@ -17,7 +17,7 @@ public class GameField {
         for (int row = 0; row < ROWS; row++) {
             for (int col = 0; col < COLS; col++) {
                 Rectangle cellBoard = new Rectangle(col * CELL_SIZE + 250, row * CELL_SIZE + 150, CELL_SIZE, CELL_SIZE);
-                cellBoard.draw();
+                //cellBoard.draw();
                 cellsBoard[row][col] = cellBoard;
             }
 

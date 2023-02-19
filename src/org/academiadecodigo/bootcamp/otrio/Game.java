@@ -137,7 +137,7 @@ public class Game {
         // Create rectangle
         scoreFrame = new Rectangle(rectX, rectY, rectWidth, rectHeight);
         scoreFrame.setColor(Color.BLACK);
-        scoreFrame.draw();
+        //scoreFrame.draw();
 
         // Add player names and scores
         for (int i = 0; i < numPlayers; i++) {
