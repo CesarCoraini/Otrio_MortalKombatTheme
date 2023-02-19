@@ -7,6 +7,7 @@ import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 import java.util.HashMap;
 
@@ -15,6 +16,8 @@ public class Player{
     private int score;
     private Color color;
     private Rectangle pointer;
+    private Picture newPointer;
+    private String[] pointersURL = new String[] {"resources/Player1.png", "resources/Player2.png", "resources/Player3.png", "resources/Player4.png"};
 
     private boolean canMove;
 
@@ -56,7 +59,8 @@ public class Player{
 
         pointer = new Rectangle(x - CELL_SIZE, y - CELL_SIZE, CELL_SIZE, CELL_SIZE);
         pointer.setColor(color);
-        //pointer.draw();
+
+        newPointer = new Picture(x - CELL_SIZE, y - CELL_SIZE, pointersURL[name]);
 
     }
 
@@ -174,5 +178,9 @@ public class Player{
             checkBigCircleCount[1][i] = false;
             checkBigCircleCount[2][i] = false;
         }
+    }
+
+    public Picture getNewPointer() {
+        return newPointer;
     }
 }

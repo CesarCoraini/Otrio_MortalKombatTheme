@@ -125,15 +125,19 @@ public class Game {
         if(getTurn() == 0) {
             players[0].setCanMove(true);
             players[0].getPointer().draw();
+            players[0].getNewPointer().draw();
         } else if (getTurn() == 1){
             players[1].setCanMove(true);
             players[1].getPointer().draw();
+            players[1].getNewPointer().draw();
         } else if (getTurn() == 2){
             players[2].setCanMove(true);
             players[2].getPointer().draw();
+            players[2].getNewPointer().draw();
         } else {
             players[3].setCanMove(true);
             players[3].getPointer().draw();
+            players[3].getNewPointer().draw();
         }
 
         counter--;

@@ -142,6 +142,7 @@ public class EventHandler implements KeyboardHandler {
                     break;
                 }
                 players[currentPlayerIndex].getPointer().translate(0, -CELL_SIZE);
+                players[currentPlayerIndex].getNewPointer().translate(0, -CELL_SIZE);
                 break;
             case KeyboardEvent.KEY_A:
                 if (players[currentPlayerIndex].getPointer().getX() == x - 100) {
@@ -149,6 +150,7 @@ public class EventHandler implements KeyboardHandler {
                     break;
                 }
                 players[currentPlayerIndex].getPointer().translate(-CELL_SIZE, 0);
+                players[currentPlayerIndex].getNewPointer().translate(-CELL_SIZE, 0);
                 break;
             case KeyboardEvent.KEY_S:
                 if (players[currentPlayerIndex].getPointer().getY() == y + 100) {
@@ -156,6 +158,7 @@ public class EventHandler implements KeyboardHandler {
                     break;
                 }
                 players[currentPlayerIndex].getPointer().translate(0, CELL_SIZE);
+                players[currentPlayerIndex].getNewPointer().translate(0, CELL_SIZE);
                 break;
             case KeyboardEvent.KEY_D:
                 if (players[currentPlayerIndex].getPointer().getX() == x + 100) {
@@ -163,6 +166,7 @@ public class EventHandler implements KeyboardHandler {
                     break;
                 }
                 players[currentPlayerIndex].getPointer().translate(CELL_SIZE, 0);
+                players[currentPlayerIndex].getNewPointer().translate(CELL_SIZE, 0);
                 break;
             case KeyboardEvent.KEY_J:
 
@@ -207,6 +211,7 @@ public class EventHandler implements KeyboardHandler {
                 //set's propriety's for the next turn
                 players[currentPlayerIndex].setCanMove(false);
                 players[currentPlayerIndex].getPointer().delete();
+                players[currentPlayerIndex].getNewPointer().delete();
 
                 if (Game.getTurn() == 3){
                     currentPlayerIndex = 0;
@@ -259,6 +264,7 @@ public class EventHandler implements KeyboardHandler {
                 //set's propriety's for the next turn
                 players[currentPlayerIndex].setCanMove(false);
                 players[currentPlayerIndex].getPointer().delete();
+                players[currentPlayerIndex].getNewPointer().delete();
 
                 if (Game.getTurn() == 3){
                     currentPlayerIndex = 0;
@@ -309,6 +315,7 @@ public class EventHandler implements KeyboardHandler {
                 //set's propriety's for the next turn
                 players[currentPlayerIndex].setCanMove(false);
                 players[currentPlayerIndex].getPointer().delete();
+                players[currentPlayerIndex].getNewPointer().delete();
 
                 if (Game.getTurn() == 3){
                     currentPlayerIndex = 0;
