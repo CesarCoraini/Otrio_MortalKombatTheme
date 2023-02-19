@@ -3,6 +3,7 @@ package org.academiadecodigo.bootcamp.otrio;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.graphics.Text;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Game {
 
@@ -19,6 +20,9 @@ public class Game {
     private Text[] nameTexts = new Text[4];
     private static Text[] scoreTexts = new Text[4];
 
+    private static Picture[] winnigPicture;
+
+
 
     public Game(int num) {
 
@@ -28,6 +32,12 @@ public class Game {
         displayPlayers(players);
         this.handler = new EventHandler(players);
         handler.init();
+
+        winnigPicture = new Picture[]{new Picture(10, 10, "resources/1.png"),
+                                        new Picture(10, 10, "resources/2.png"),
+                                        new Picture(10, 10, "resources/3.png"),
+                                        new Picture(10, 10, "resources/4.png")};
+
     }
 
 
@@ -36,6 +46,7 @@ public class Game {
 
         if(counter == 0) {
             System.out.println("Don't have more options to play!");
+
             return;
         }
 
@@ -53,6 +64,7 @@ public class Game {
             scoreTexts[0].setColor(Color.WHITE);
             scoreTexts[0].draw();
 
+            winnigPicture[0].draw();
             return;
         }
 
@@ -69,6 +81,8 @@ public class Game {
             scoreTexts[1] = new Text(x, y + 20, "Score: " + players[1].getScore());
             scoreTexts[1].setColor(Color.WHITE);
             scoreTexts[1].draw();
+
+            winnigPicture[1].draw();
             return;
         }
 
@@ -85,6 +99,8 @@ public class Game {
             scoreTexts[2] = new Text(x, y + 20, "Score: " + players[2].getScore());
             scoreTexts[2].setColor(Color.WHITE);
             scoreTexts[2].draw();
+
+            winnigPicture[2].draw();
             return;
         }
 
@@ -101,6 +117,8 @@ public class Game {
             scoreTexts[3] = new Text(x, y + 20, "Score: " + players[3].getScore());
             scoreTexts[3].setColor(Color.WHITE);
             scoreTexts[3].draw();
+
+            winnigPicture[3].draw();
             return;
         }
 

@@ -159,4 +159,20 @@ public class Player{
     public void setCheckBigCircle(boolean checkBigCircles, int row, int col) {
         this.checkBigCircleCount[row][col] = checkBigCircles;
     }
+
+    public void resetBooleans() {
+        for(int i = 0; i < 3; i++) {
+            checkSmallCircles[0][i] = false;
+            checkSmallCircles[1][i] = false;
+            checkSmallCircles[2][i] = false;
+
+            checkMediumCircleCount[0][i] = false;
+            checkMediumCircleCount[1][i] = false;
+            checkMediumCircleCount[2][i] = false;
+
+            checkBigCircleCount[0][i] = false;
+            checkBigCircleCount[1][i] = false;
+            checkBigCircleCount[2][i] = false;
+        }
+    }
 }

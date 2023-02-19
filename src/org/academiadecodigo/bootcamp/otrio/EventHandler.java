@@ -18,6 +18,8 @@ public class EventHandler implements KeyboardHandler {
     private boolean[][] checkMediumPosition = new boolean[3][3];
     private boolean[][] checkBigPosition = new boolean[3][3];
 
+    private Picture[] picturesRepo = new Picture[27];
+
     private String[] smallUrl = new String[] {"resources/1 - Small.png", "resources/2 - Small.png", "resources/3 - Small.png", "resources/4 - Small.png"};
     private String[] mediumUrl = new String[] {"resources/1 - Medium.png", "resources/2 - Medium.png", "resources/3 - Medium.png", "resources/4 - Medium.png"};
     private String[] bigUrl = new String[] {"resources/1 - Big.png", "resources/2 - Big.png", "resources/3 - Big.png", "resources/4 - Big.png"};
@@ -97,6 +99,11 @@ public class EventHandler implements KeyboardHandler {
         bigCircle.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
         keyboard.addEventListener(bigCircle);
 
+        KeyboardEvent cleanBoard = new KeyboardEvent();
+        cleanBoard.setKey(KeyboardEvent.KEY_SPACE);
+        cleanBoard.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        keyboard.addEventListener(cleanBoard);
+
     }
 
 
@@ -167,6 +174,8 @@ public class EventHandler implements KeyboardHandler {
 
                 Picture smallRing = new Picture(xSmall - 37.5, ySmall - 37.5, smallUrl[currentPlayerIndex]);
                 smallRing.draw();
+                picturesRepo[counter] = smallRing;
+                counter++;
 
                 //set array in row and col position to true
                 checkSmallPosition[rowSmall][colSmall] = true;
@@ -175,9 +184,9 @@ public class EventHandler implements KeyboardHandler {
                 players[currentPlayerIndex].setCheckSmallCircles(true, rowSmall, colSmall);
 
                 //Don't remember what this do xD
-                if(counter < 8) {
+                /*if(counter < 8) {
                     counter++;
-                }
+                }*/
 
                 //set's propriety's for the next turn
                 players[currentPlayerIndex].setCanMove(false);
@@ -220,6 +229,8 @@ public class EventHandler implements KeyboardHandler {
 
                 Picture mediumRing = new Picture(xMedium - 25, yMedium - 25, mediumUrl[currentPlayerIndex]);
                 mediumRing.draw();
+                picturesRepo[counter] = mediumRing;
+                counter++;
 
                 //set array in row and col position to true
                 checkMediumPosition[rowMedium][colMedium] = true;
@@ -268,6 +279,8 @@ public class EventHandler implements KeyboardHandler {
 
                 Picture bigRing = new Picture(xBig - 12.5, yBig - 12.5, bigUrl[currentPlayerIndex]);
                 bigRing.draw();
+                picturesRepo[counter] = bigRing;
+                counter++;
 
                 //set array in row and col position to true
                 checkBigPosition[rowBig][colBig] = true;
@@ -289,6 +302,10 @@ public class EventHandler implements KeyboardHandler {
                 Game.nextTurn();
                 break;
 
+            case KeyboardEvent.KEY_SPACE:
+                cleanBoard();
+                break;
+
         }
 
     }
@@ -301,6 +318,26 @@ public class EventHandler implements KeyboardHandler {
 
     public boolean[][] getCheckSmallPosition() {
         return checkSmallPosition;
+    }
+
+    public void cleanBoard() {
+        for (Picture picture : picturesRepo) {
+            if(picture != null) {
+                picture.delete();
+            }
+        }
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                checkSmallPosition[i][j] = false;
+                checkMediumPosition[i][j] = false;
+                checkBigPosition[i][j] = false;
+            }
+        }
+
+        for (int i = 0; i < 4; i++) {
+            players[i].resetBooleans();
+        }
     }
 
 
