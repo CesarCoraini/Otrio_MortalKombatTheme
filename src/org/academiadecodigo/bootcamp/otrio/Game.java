@@ -46,7 +46,10 @@ public class Game {
 
         if(counter == 0) {
             System.out.println("Don't have more options to play!");
-
+            Text nameText = new Text(100, 100, "Don't have more options to play!");
+            nameText.setColor(Color.WHITE);
+            nameText.draw();
+            counter = 27;
             return;
         }
 
@@ -170,7 +173,7 @@ public class Game {
             int x = rectX + 20 + i * 100;
             int y = rectY + 15;
             Player player = players[i];
-            Text nameText = new Text(x, y, "Player " + player.getName());
+            Text nameText = new Text(x, y, "Player " + player.getId());
             nameTexts[i] = nameText;
             nameText.setColor(Color.WHITE);
             nameText.draw();

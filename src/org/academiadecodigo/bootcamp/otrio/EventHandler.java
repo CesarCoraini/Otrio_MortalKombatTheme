@@ -115,7 +115,7 @@ public class EventHandler implements KeyboardHandler {
         //Check player Index
         System.out.println("player key pressed " + currentPlayerIndex);
 
-        if(players[0].hasWon() || players[1].hasWon() || players[2].hasWon() || players[3].hasWon()) {
+        if(players[0].hasWon() || players[1].hasWon() || players[2].hasWon() || players[3].hasWon() || counter == 27) {
             switch (keyboardEvent.getKey()) {
                 case KeyboardEvent.KEY_SPACE:
                     cleanBoard();

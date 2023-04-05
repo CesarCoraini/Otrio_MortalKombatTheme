@@ -1,18 +1,11 @@
 package org.academiadecodigo.bootcamp.otrio;
 
 import org.academiadecodigo.simplegraphics.graphics.Color;
-import org.academiadecodigo.simplegraphics.graphics.Ellipse;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
-import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
-import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
-import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
-import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-import java.util.HashMap;
-
 public class Player{
-    private int name;
+    private int id;
     private int score;
     private Color color;
     private Rectangle pointer;
@@ -30,9 +23,9 @@ public class Player{
     private boolean[][] checkMediumCircleCount;
     private boolean[][] checkBigCircleCount;
 
-    public Player(int name, int score, Color color) {
+    public Player(int id, int score, Color color) {
 
-        this.name = name;
+        this.id = id;
         this.score = score;
         this.color = color;
 
@@ -60,7 +53,7 @@ public class Player{
         pointer = new Rectangle(x - CELL_SIZE, y - CELL_SIZE, CELL_SIZE, CELL_SIZE);
         pointer.setColor(color);
 
-        newPointer = new Picture(x - CELL_SIZE, y - CELL_SIZE, pointersURL[name]);
+        newPointer = new Picture(x - CELL_SIZE, y - CELL_SIZE, pointersURL[id]);
 
     }
 
@@ -116,15 +109,12 @@ public class Player{
 
         }
 
-
-
-
         //if no win was found
         return false;
     }
 
-    public int getName() {
-        return name;
+    public int getId() {
+        return id;
     }
 
     public int getScore() {
